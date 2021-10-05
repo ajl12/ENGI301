@@ -95,10 +95,10 @@ def get_user_input():
         
         operator = input("Enter the operator (valid operators are +, -, *, /, >>, <<, % and **): ")
         
-        if operator =='>>' or '<<':
+        if operator =='>>' or '<<': # if left or right shift is being performed
         
-            number1 = int(input("Enter the first number: "))
-            number2 = int(input("Enter the second number: "))
+            number1 = int(input("Enter the first number: ")) # convert number1 to an integer
+            number2 = int(input("Enter the second number: ")) # convert number2 to an integer
         
         else:
         
@@ -107,6 +107,7 @@ def get_user_input():
         
     
         return(number1, number2, operator)
+        
     except:
         print("Invalid Input")
         return(None,None,None)
