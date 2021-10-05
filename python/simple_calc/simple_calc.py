@@ -92,9 +92,19 @@ def get_user_input():
     """Get input from the user ; two numbers and an operator"""
     
     try:
-        number1 = float(input("Enter the first number: "))
-        number2 = float(input("Enter the second number: "))
+        
         operator = input("Enter the operator (valid operators are +, -, *, /, >>, <<, % and **): ")
+        
+        if operator =='>>' or '<<':
+        
+            number1 = int(input("Enter the first number: "))
+            number2 = int(input("Enter the second number: "))
+        
+        else:
+        
+            number1 = float(input("Enter the first number: "))  
+            number2 = float(input("Enter the second number: "))
+        
     
         return(number1, number2, operator)
     except:
