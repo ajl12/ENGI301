@@ -1,7 +1,7 @@
 
 """
 --------------------------------------------------------------------------
-Inflation Device
+Stress Buddy
 --------------------------------------------------------------------------
 License:   
 Copyright 2020 Alex Lammers
@@ -32,12 +32,12 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --------------------------------------------------------------------------
 
-Use the following hardware components to make a programmable combination lock:  
+Use the following hardware components to make this device:  
   - HT16K33 Display
   - Button
   - Micro Air Pump
-  - Normally-Closed Solenoid Valve (2)
-  - 0-1 PSI pressure sensor
+  - Normally-Closed Solenoid Valve
+  - 0-1 PSI analog pressure sensor
   
 Requirements:
   - Hardware:
@@ -67,6 +67,7 @@ import ht16k33 as HT16K33
 # Constants
 # ------------------------------------------------------------------------
 
+# None
 
 # ------------------------------------------------------------------------
 # Global variables
@@ -86,11 +87,10 @@ class InflationDevice():
     pump    = None
     reset_time = None
     solenoid_1 = None
-    analog_in  = None
     v_supply = None
     display    = None
 
-    def __init__(self, button1="P2_2", button2="P2_8", pump="P2_4", reset_time=0.5, solenoid_1="P1_6",analog_in="P2_35",v_supply="P1_2",i2c_bus=1,i2c_address=0x70):
+    def __init__(self, button1="P2_2", button2="P2_8", pump="P2_4", reset_time=0.5, solenoid_1="P1_6",v_supply="P1_2",i2c_bus=1,i2c_address=0x70):
         """ Initialize variables """
 
         self.button1    = button1
@@ -98,7 +98,6 @@ class InflationDevice():
         self.pump       = pump
         self.reset_time = reset_time
         self.solenoid_1 = solenoid_1
-        self.analog_in  = analog_in
         self.v_supply   = v_supply
         self.display    = HT16K33.HT16K33(i2c_bus, i2c_address)
 
@@ -116,10 +115,9 @@ class InflationDevice():
 
         # Initialize Pump
         GPIO.setup(self.pump, GPIO.OUT)
+        
+        # Initialize Solenoid Valve
         GPIO.setup(self.solenoid_1, GPIO.OUT)
-
-        # Initialize Analog Input
-        ADC.setup()
         
         # Initialize Display
         self.display.set_digit(0, 0)        # "0" 
@@ -183,8 +181,13 @@ class InflationDevice():
     def run(self):
         """Execute the main program."""
 
+        # Air pump OFF
         GPIO.output(self.pump, GPIO.LOW)
+        
+        # Solenoid valve OFF (Closed)
         GPIO.output(self.solenoid_1, GPIO.LOW)
+        
+        # Read voltage measured at v_out pin of pressure sensor
         v_out = self.read_v_out()
 
         while(1):
@@ -194,19 +197,25 @@ class InflationDevice():
                 time.sleep(0.1)
                 
             time.sleep(0.5)
+            
+            # Air pump ON
             GPIO.output(self.pump, GPIO.HIGH)
             
-            # Wait for maximum pressure or button press
+            # Wait for button press
             while(GPIO.input(self.button1) == 1):
-                v_out = self.read_v_out()
+              
+                # Calculate pressure in mmHg based on v_out and supply measurements
+                v_out = self.read_v_out() 
                 v_supply = self.read_v_supply()
                 pressure = abs(round(57.7149*((v_out - 0.1*v_supply)/(0.8*v_supply))))
+                
                 # Update the display
                 self.messages(pressure) 
-                print(pressure)
                 time.sleep(0.1)
                
             time.sleep(0.5)
+            
+            # Air pump OFF
             GPIO.output(self.pump, GPIO.LOW)
             
             # Wait for button press
@@ -214,19 +223,26 @@ class InflationDevice():
                 time.sleep(0.5)
                 
             time.sleep(0.1)
+            
+            # Solenoid valve ON (Open)
             GPIO.output(self.solenoid_1, GPIO.HIGH)
+            
+            # Air pump OFF
             GPIO.output(self.pump, GPIO.LOW)
             
+            # Wait until pressure cuff has fully released compressed air and is below a v_out singal from the pressure sensor of 500mV. 
             while(v_out > 500):
+              
+                # Calculate pressure in mmHg based on v_out and supply measurements
                 v_out = self.read_v_out()
                 v_supply = self.read_v_supply()
                 pressure = abs(round(57.7149*((v_out - 0.1*v_supply)/(0.8*v_supply))))
+                
                 # Update the display
-                self.messages(pressure) 
-                print(v_out)
+                self.messages(pressure)
                 time.sleep(0.1)
                 
-            
+            # Solenoid valve OFF (Closed)
             GPIO.output(self.solenoid_1, GPIO.LOW)
   
     def cleanup(self):
@@ -249,7 +265,6 @@ class InflationDevice():
 
 # End class
 
-
 # ------------------------------------------------------------------------
 # Main script
 # ------------------------------------------------------------------------
@@ -262,7 +277,7 @@ if __name__ == '__main__':
     project_1 = InflationDevice()
 
     try:
-        # Run the inflatable device
+        # Run the Stress Buddy
         project_1.run()
 
     except KeyboardInterrupt:
