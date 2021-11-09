@@ -4,6 +4,9 @@
 HT16K33 I2C Library
 --------------------------------------------------------------------------
 License:   
+Copyright 2021 Alex Lammers
+
+Modified from 
 Copyright 2018-2021 Erik Welsh
 
 Redistribution and use in source and binary forms, with or without 
