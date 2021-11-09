@@ -1,9 +1,9 @@
 #!/bin/bash
 # --------------------------------------------------------------------------
-# Inflation Device - Run Script
+# Stress Buddy - Run Script
 # --------------------------------------------------------------------------
 # License:   
-# Copyright 2020 Erik Welsh
+# Copyright 2020 Alex Lammers
 # 
 # Redistribution and use in source and binary forms, with or without 
 # modification, are permitted provided that the following conditions are met:
@@ -31,9 +31,11 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # --------------------------------------------------------------------------
 # 
-# Run Combination Lock in /var/lib/cloud9/ENGI301/python/combo_lock
-# 
+# Run Stress Buddy (project_1.py) in /var/lib/cloud9/ENGI301/project_1
+# Define python path to ht16k33 folder containing ht16k33.py file to run 7-segment display
+#
 # --------------------------------------------------------------------------
+
 cd /var/lib/cloud9/ENGI301/project_1
 ./configure_pins.sh
 PYTHONPATH=/var/lib/cloud9/ENGI301/python/ht16k33 python3 project_1.py
