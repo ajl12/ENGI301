@@ -1,9 +1,9 @@
 #!/bin/bash
 # --------------------------------------------------------------------------
-# Inflation Device - Configure Pins
+# Stress Buddy - Configure Pins
 # --------------------------------------------------------------------------
 # License:   
-# Copyright 2020 Erik Welsh
+# Copyright 2021 Alex Lammers
 # 
 # Redistribution and use in source and binary forms, with or without 
 # modification, are permitted provided that the following conditions are met:
@@ -31,9 +31,10 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # --------------------------------------------------------------------------
 # 
-# Configure pins for Inflation Device:
+# Configure pins for Stress Buddy:
 #   - Button
 #   - Pump
+#   - I2C
 # 
 # --------------------------------------------------------------------------
 
