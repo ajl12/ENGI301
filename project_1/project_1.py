@@ -4,7 +4,7 @@
 Stress Buddy
 --------------------------------------------------------------------------
 License:   
-Copyright 2020 Alex Lammers
+Copyright 2021 Alex Lammers
 
 Redistribution and use in source and binary forms, with or without 
 modification, are permitted provided that the following conditions are met:
@@ -50,7 +50,7 @@ Requirements:
     - When pressure readings indicate full deflation: Reset solenoid valve
 
 Uses:
-  - Custom HT16K33 display library
+  - Modified HT16K33 display library (based on file from Copyright 2020 Erik Welsh)
 
 """
 import time
