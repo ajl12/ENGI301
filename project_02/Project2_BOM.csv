@@ -1,0 +1,12 @@
+"Qty";"Value";"Device";"Package";"Parts";"Description";"COPYRIGHT";"MANUFACTURER_PART_NUMBER";"MFR_NAME";
+"1";"0.1";"R_R0603";"R0603";"R4";"RESISTOR, American symbol";"";"";"";
+"1";"0.56_HEX_BACKPACK";"0.56_HEX_BACKPACK";"0.56_HEX_BACKPACK";"U3";"0.56" LED HEX Backback - Adafruit HT16K33 -";"";"";"";
+"3";"1k";"R_R0603";"R0603";"R1, R2, R3";"RESISTOR, American symbol";"";"";"";
+"1";"ABPDANT001PGAA5";"ABPDANT001PGAA5";"ABPDAN_HNW";"U4";"";"Copyright (C) 2021 Ultra Librarian. All rights reserved.";"ABPDANT005PGAA5";"Honeywell";
+"1";"AIRPUMP";"AIRPUMP";"AIRPUMP";"PUMP1";"AIMELIAE 1PCS DC 3V Micro Vacuum Air Pump Mini Air Pressure Pump Medical Pump 30KPa 0.28L -";"";"";"";
+"6";"FIDUCIAL";"FIDUCIAL";"FIDUCIAL_40MIL";"FUD1, FUD2, FUD3, FUD4, FUD5, FUD6";"";"";"";"";
+"4";"MOUNTING_HOLE";"MOUNTING_HOLE";"MOUNTING_HOLE";"MGT1, MGT2, MGT3, MGT4";"Chassis Mounting Hole w/GND connection ability";"";"";"";
+"1";"POCKETBEAGLE_REL";"POCKETBEAGLE_REL";"POCKETBEAGLE";"U1";"A PocketBeagle device with relevant components for the Stress Buddy project separated from the main schematic.";"";"";"";
+"1";"PUSH_BUTTON";"PUSH_BUTTON";"BUTTON_12.5MM";"SW1";"";"";"";"";
+"1";"SOLENOID";"SOLENOID";"SOLENOID";"SOL1";"Uxcell Miniature Solenoid Valve 2 Way Normally Closed DC4.5V 0.5A Air Solenoid Valve -";"";"";"";
+"1";"ULN2803AN";"ULN2803AN";"N18_TEX";"U2";"";"Copyright (C) 2021 Ultra Librarian. All rights reserved.";"ULN2803AN";"Texas Instruments";
